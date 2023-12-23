@@ -1,0 +1,13 @@
+{
+    "canisters": {
+        "doctor-info-ic-canister": {
+            "type": "custom",
+            "main": "src/index.ts",
+            "candid": "src/index.did",
+            "build": "npx azle doctor-info-ic-canister",
+            "wasm": ".azle/doctor-info-ic-canister/doctor-info-ic-canister.wasm",
+            "gzip": true
+        }
+    }
+}
+

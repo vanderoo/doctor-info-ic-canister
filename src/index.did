@@ -1,0 +1,6 @@
+service: () -> {
+    getDoctorInfo: (text) -> (vec record {id:text; name:text; specialization:text; schedule:vec record {day:text; startTime:text; endTime:text}}) query;
+    getDoctorSchedule: (text) -> (vec record {day:text; startTime:text; endTime:text}) query;
+    registerDoctor: (text, text, vec record {day:text; startTime:text; endTime:text}) -> ();
+    searchDoctorsBySpecialization: (text) -> (vec record {id:text; name:text; specialization:text; schedule:vec record {day:text; startTime:text; endTime:text}}) query;
+}

@@ -1,0 +1,25 @@
+{
+  "name": "doctor-info-ic-canister",
+  "version": "1.0.0",
+  "description": "Internet Computer Smart Contract for Doctor Management",
+  "main": "index.ts",
+  "scripts": {
+    "start": "dfx start --background",
+    "stop": "dfx stop",
+    "deploy": "dfx deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanderoo/doctor-info-ic-canister.git"
+  },
+  "author": "vanderoo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanderoo/doctor-info-ic-canister/issues"
+  },
+  "homepage": "https://github.com/vanderoo/doctor-info-ic-canister#readme",
+  "dependencies": {
+    "azle": "^0.19.0",
+    "uuid": "^9.0.1"
+  }
+}
