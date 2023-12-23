@@ -2,7 +2,7 @@ import { Canister, query, text, update, Record, Vec, Opt, Void } from 'azle';
 import { v4 as uuidv4 } from 'uuid';
 
 type Doctor = {
-    id: string;
+    doctorId: string;
     name: string;
     specialization: string;
     schedule: Vec<Schedule>;
@@ -18,7 +18,7 @@ let doctors: Doctor[] = [];
 
 export default Canister({
     getDoctorInfo: query([text], Vec(Record({
-        "id": text,
+        "doctorId": text,
         "name": text,
         "specialization": text,
         "schedule": Vec(Record({
@@ -36,11 +36,16 @@ export default Canister({
         "startTime": text,
         "endTime": text
     }))], Void, (name, specialization, schedule) => {
-        const newDoctor: Doctor = { id: uuidv4(), name, specialization, schedule };
+        // Validation checks for name, specialization, and schedule can be added here.
+        if (!name || !specialization || schedule.length === 0) {
+            console.error('Invalid registration data. Name, specialization, and schedule are required.');
+            return;
+        }
+
+        const newDoctor: Doctor = { doctorId: uuidv4(), name, specialization, schedule };
         doctors.push(newDoctor);
-        console.log('Registered new doctor:', newDoctor);
+        console.log(`Registered new doctor: ${newDoctor.name} (ID: ${newDoctor.doctorId})`);
     }),
-    
 
     getDoctorSchedule: query([text], Vec(Record({
         "day": text,
@@ -52,7 +57,7 @@ export default Canister({
     }),
 
     searchDoctorsBySpecialization: query([text], Vec(Record({
-        "id": text,
+        "doctorId": text,
         "name": text,
         "specialization": text,
         "schedule": Vec(Record({
