@@ -42,6 +42,20 @@ export default Canister({
             return;
         }
 
+        // Additional validation checks
+        if (typeof name !== 'string' || name.trim() === '') {
+            console.error('Invalid name. Name must be a non-empty string.');
+            return;
+        }
+        if (typeof specialization !== 'string' || specialization.trim() === '') {
+            console.error('Invalid specialization. Specialization must be a non-empty string.');
+            return;
+        }
+        if (!Array.isArray(schedule) || schedule.some(s => typeof s.day !== 'string' || typeof s.startTime !== 'string' || typeof s.endTime !== 'string')) {
+            console.error('Invalid schedule. Schedule must be an array of valid schedule objects.');
+            return;
+        }
+
         const newDoctor: Doctor = { doctorId: uuidv4(), name, specialization, schedule };
         doctors.push(newDoctor);
         console.log(`Registered new doctor: ${newDoctor.name} (ID: ${newDoctor.doctorId})`);
